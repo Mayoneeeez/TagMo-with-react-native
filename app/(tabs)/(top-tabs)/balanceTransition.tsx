@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -9,11 +9,10 @@ import {
   StatusBar,
 } from "react-native";
 import { Dimensions } from "react-native";
-import { LineChart } from "react-native-chart-kit";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import WheelPickerExpo from "react-native-wheel-picker-expo";
+import { LineChart, BarChart } from "react-native-chart-kit";
 import RNPickerSelect from "react-native-picker-select";
 import DBApi from "@/services/database/DBApi";
+import utility from "@/utils/utility";
 
 type ListItemProps = {
   month: string;
@@ -48,6 +47,21 @@ const chartData = {
 
 const screenWidth = Dimensions.get("window").width;
 
+const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
+  <View style={styles.listItem}>
+    <Text style={styles.month} numberOfLines={1} ellipsizeMode="tail">
+      {ListItemProps.month}
+    </Text>
+    <Text
+      style={styles.total_amount_by_month}
+      numberOfLines={1}
+      ellipsizeMode="tail"
+    >
+      ¥{ListItemProps.total_amount_by_month}
+    </Text>
+  </View>
+);
+
 const blanceTransition: React.FC = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selectedYear, setSelectedYear] = useState(
@@ -59,6 +73,17 @@ const blanceTransition: React.FC = () => {
   );
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [listData, setListData] = useState<ListItemProps[]>([]);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const renderItem = useCallback(
+    ({ index }: { index: number }) => (
+      <ListItem
+        month={chartData.labels[index]}
+        total_amount_by_month={chartData.datasets[0].data[index]}
+      />
+    ),
+    [],
+  );
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -131,15 +156,34 @@ const blanceTransition: React.FC = () => {
         <LineChart
           data={chartData}
           width={screenWidth}
-          height={220}
+          height={160}
           chartConfig={{
-            backgroundColor: "#1cc910",
+            backgroundColor: "#eff3ff",
             backgroundGradientFrom: "#eff3ff",
-            backgroundGradientTo: "#efefef",
+            backgroundGradientTo: "#eff3ff",
             color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           }}
         />
+        {/* <BarChart
+          data={chartData}
+          width={screenWidth}
+          height={220}
+          yAxisLabel="$"
+          yAxisSuffix="¥"
+          chartConfig={{
+            backgroundColor: "#1cc910",
+            backgroundGradientFrom: "#eff3ff",
+            backgroundGradientTo: "#eff3ff",
+            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          }}
+        /> */}
       </View>
+      <FlatList
+        data={chartData.labels}
+        renderItem={renderItem}
+        keyExtractor={(index) => index.toString()}
+        style={styles.list}
+      />
     </SafeAreaView>
   );
 };
@@ -180,14 +224,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
   },
-  category: {
+  month: {
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "left", // テキストを左寄せ
     flex: 1, // 幅を保つためにflexを使用
   },
 
-  amount: {
+  total_amount_by_month: {
     fontSize: 16,
     flex: 1, // 幅を保つためにflexを使用
     textAlign: "right", // テキストを左寄せ
@@ -217,7 +261,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 12, // Padding for touchable area
     color: "black",
-    backgroundColor: "#f0f0f0", // Light background color for visibility
+    backgroundColor: "#eff3ff", // Light background color for visibility
     borderRadius: 8, // Rounded corners for a soft look
     textAlign: "center", // Center text horizontally
     alignSelf: "center", // Center the input itself
@@ -229,7 +273,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 12, // Padding for touchable area
     color: "black",
-    backgroundColor: "#f0f0f0", // Light background color for visibility
+    backgroundColor: "#eff3ff", // Light background color for visibility
     borderRadius: 8, // Rounded corners for a soft look
     textAlign: "center", // Center text horizontally
     alignSelf: "center", // Center the input itself
