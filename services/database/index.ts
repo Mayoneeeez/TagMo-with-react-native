@@ -3,6 +3,7 @@ import { SQLiteDatabase } from "expo-sqlite";
 //ここは開発が終わったら修正する
 
 export async function migrateDbIfNeeded(db: SQLiteDatabase) {
+  console.log("DBindexの実行");
   const DATABASE_VERSION = 1;
 
   let result = await db.getFirstAsync<{ user_version: number }>(

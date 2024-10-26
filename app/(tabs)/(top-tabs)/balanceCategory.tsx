@@ -13,7 +13,7 @@ import { PieChart } from "react-native-chart-kit";
 import { useSQLiteContext } from "expo-sqlite";
 import { LoadListContext } from "@/app/_layout";
 import { HOME_VALUE } from "@/constants/appConstants";
-import utility from "@/utils/utility";
+import utility from "@/utils/Utility";
 
 type ListItemProps = {
   category: string;
@@ -205,7 +205,6 @@ const BalanceCategory: React.FC = () => {
         );
 
         await createChart(result);
-
 
         await setListData(result);
       } catch (error) {

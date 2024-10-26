@@ -24,7 +24,7 @@ import { LoadListContext } from "@/app/_layout";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import utility from "@/utils/utility";
+import utility from "@/utils/Utility";
 
 type RootParamList = {
   History: undefined;

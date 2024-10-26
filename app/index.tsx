@@ -1,8 +1,3 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Redirect, SplashScreen } from "expo-router";
 import { useEffect } from "react";
@@ -27,7 +22,7 @@ const Index = () => {
     return null;
   }
 
-  return <Redirect href="(tabs)/(home)/home" />;
+  return <Redirect href="/(tabs)/(home)/home" />;
   // return <Redirect href="auth/login" />;
 };
 

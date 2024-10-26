@@ -12,7 +12,7 @@ import { Dimensions } from "react-native";
 import { LineChart, BarChart } from "react-native-chart-kit";
 import RNPickerSelect from "react-native-picker-select";
 import DBApi from "@/services/database/DBApi";
-import utility from "@/utils/utility";
+import utility from "@/utils/Utility";
 
 type ListItemProps = {
   month: string;
@@ -113,7 +113,12 @@ const blanceTransition: React.FC = () => {
       console.log();
       console.log();
       console.log("chartData = ", chartData);
-      console.log("data = ", chartData.datasets[0].data);
+      console.log(
+        "data = ",
+        chartData.datasets[0].data,
+        " ",
+        typeof chartData.datasets[0].data[0],
+      );
       console.log();
       console.log("selectedYear = ", selectedYear);
       console.log();
@@ -156,12 +161,13 @@ const blanceTransition: React.FC = () => {
         <LineChart
           data={chartData}
           width={screenWidth}
-          height={160}
+          height={180}
           chartConfig={{
             backgroundColor: "#eff3ff",
             backgroundGradientFrom: "#eff3ff",
             backgroundGradientTo: "#eff3ff",
             color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            decimalPlaces: 0,
           }}
         />
         {/* <BarChart

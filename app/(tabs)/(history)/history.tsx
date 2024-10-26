@@ -15,7 +15,7 @@ import DBApi from "@/services/database/DBApi";
 import { DateSelecter } from "@/components/DateSelecter";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
-import utility from "@/utils/utility";
+import utility from "@/utils/Utility";
 
 type ListItemProps = {
   id: string;

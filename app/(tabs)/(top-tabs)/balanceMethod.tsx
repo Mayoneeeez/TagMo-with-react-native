@@ -13,7 +13,7 @@ import { PieChart } from "react-native-chart-kit";
 import { useSQLiteContext } from "expo-sqlite";
 import { LoadListContext } from "@/app/_layout";
 import { HOME_VALUE } from "@/constants/appConstants";
-import utility from "@/utils/utility";
+import utility from "@/utils/Utility";
 
 //支払い手法は一元管理し、そこから利用する形にする
 

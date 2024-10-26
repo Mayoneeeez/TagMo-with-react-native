@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   Platform,
   StatusBar,
+  Switch,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerActions } from "@react-navigation/native";
@@ -23,6 +24,10 @@ import useCurrentLocation from "@/hooks/useCurrentLocation";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import ShopListApi from "@/services/overpass/ShopListApi";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
+import { usePushNotification } from "@/hooks/usePushNotification";
 
 const NEXT_SCREEN: string = "Amount";
 
@@ -44,26 +49,26 @@ const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
 
 const Drawer = createDrawerNavigator();
 
-const handlePress = () => {
-  Alert.alert(
-    "ログアウト",
-    "ログアウトしますか？",
-    [
-      {
-        text: "No",
-        onPress: () => {},
-        style: "cancel",
-      },
-      {
-        text: "Yes",
-        onPress: () => {
-          router.replace("/auth/login");
-        },
-      },
-    ],
-    { cancelable: false },
-  );
-};
+// const handlePress = () => {
+//   Alert.alert(
+//     "ログアウト",
+//     "ログアウトしますか？",
+//     [
+//       {
+//         text: "No",
+//         onPress: () => {},
+//         style: "cancel",
+//       },
+//       {
+//         text: "Yes",
+//         onPress: () => {
+//           router.replace("/auth/login");
+//         },
+//       },
+//     ],
+//     { cancelable: false },
+//   );
+// };
 
 const HomeMain: React.FC = () => {
   // console.log("HomeMainが呼び出されてるか確認");
@@ -179,9 +184,23 @@ const HomeMain: React.FC = () => {
 
 const HomeSettings: React.FC = () => {
   const navigation = useNavigation();
-
+  const { onPressDone } = usePushNotification();
+  const [onToggle, setOnToggle] = useState<boolean>(false);
+  const [remindTime, setRemindTime] = useState(new Date());
   const onSettingsPress = () => {
     navigation.dispatch(DrawerActions.openDrawer());
+    Keyboard.dismiss(); // キーボードを閉じる
+  };
+
+  const onSetPicker = (event: DateTimePickerEvent, remindTime?: Date) => {
+    if (remindTime) {
+      setRemindTime(remindTime);
+    }
+  };
+
+  const onSettingsUpdate = async () => {
+    onPressDone(onToggle, remindTime);
+    await Alert.alert("設定を更新しました");
   };
 
   return (
@@ -194,7 +213,35 @@ const HomeSettings: React.FC = () => {
         onRightPress={onSettingsPress}
       />
       <View style={styles.innerContainer}>
-        <RectangleButton title="Log Out" onPress={handlePress} />
+        <View style={styles.reminderRow}>
+          <Text style={styles.reminderText}>リマインダ</Text>
+          <Switch
+            onChange={() => {
+              setOnToggle(!onToggle);
+            }}
+            value={onToggle}
+          />
+          {onToggle ? (
+            <DateTimePicker
+              disabled={false}
+              style={styles.inputDate}
+              value={remindTime}
+              mode="time"
+              display="spinner"
+              onChange={onSetPicker}
+            />
+          ) : (
+            <DateTimePicker
+              disabled={true}
+              style={styles.inputDate}
+              value={remindTime}
+              mode="time"
+              display="spinner"
+              onChange={onSetPicker}
+            />
+          )}
+        </View>
+        <RectangleButton title="設定更新" onPress={onSettingsUpdate} />
       </View>
     </SafeAreaView>
   );
@@ -287,5 +334,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 30,
     marginTop: -100,
+  },
+  reminderRow: {
+    flexDirection: "row", // 横並びにする
+    alignItems: "center", // 垂直方向に中央揃え
+    marginBottom: 20, // ボタンとの余白をつける
+  },
+  reminderText: {
+    fontSize: 16,
+    marginRight: 10, // トグルスイッチとの間に余白を追加
+    fontWeight: "bold",
+  },
+  inputDate: {
+    flex: 1,
+    // borderColor: "#E0E0E0", // 淡い灰色の枠線
+    // borderWidth: 1,
+    // borderRadius: 8,
+    // paddingVertical: 0,
+    // paddingHorizontal: 12,
+    // fontSize: 16,
+    // backgroundColor: "#F9F9F9",
+    height: 70,
   },
 });
