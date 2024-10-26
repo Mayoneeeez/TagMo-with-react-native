@@ -28,6 +28,7 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
 import { usePushNotification } from "@/hooks/usePushNotification";
+import { SETTINGS_MESSAGE } from "@/constants/message";
 
 const NEXT_SCREEN: string = "Amount";
 
@@ -200,7 +201,7 @@ const HomeSettings: React.FC = () => {
 
   const onSettingsUpdate = async () => {
     onPressDone(onToggle, remindTime);
-    await Alert.alert("設定を更新しました");
+    Alert.alert(SETTINGS_MESSAGE.UPDATE_MESSAGE);
   };
 
   return (
@@ -214,7 +215,7 @@ const HomeSettings: React.FC = () => {
       />
       <View style={styles.innerContainer}>
         <View style={styles.reminderRow}>
-          <Text style={styles.reminderText}>リマインダ</Text>
+          <Text style={styles.reminderText}>{SETTINGS_MESSAGE.REMINDER}</Text>
           <Switch
             onChange={() => {
               setOnToggle(!onToggle);
@@ -241,7 +242,10 @@ const HomeSettings: React.FC = () => {
             />
           )}
         </View>
-        <RectangleButton title="設定更新" onPress={onSettingsUpdate} />
+        <RectangleButton
+          title={SETTINGS_MESSAGE.BUTTON_UPDATE}
+          onPress={onSettingsUpdate}
+        />
       </View>
     </SafeAreaView>
   );

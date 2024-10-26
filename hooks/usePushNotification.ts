@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import { COMMON_MESSAGE } from "@/constants/message";
 
 export const usePushNotification = () => {
   const [granted, setGranted] = useState(true);
@@ -43,8 +44,8 @@ export const usePushNotification = () => {
     async (weekday: number, hour: number, minute: number) => {
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: "今日使ったお金は記録した？",
-          body: "毎日コツコツ記録していこう",
+          title: COMMON_MESSAGE.NOTIFICATION_MESSAGE.TITLE,
+          body: COMMON_MESSAGE.NOTIFICATION_MESSAGE.BODY,
         },
         trigger: {
           weekday,

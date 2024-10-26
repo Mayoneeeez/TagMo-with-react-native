@@ -6,6 +6,10 @@ export const COMMON_MESSAGE = {
     PATTERN_YES: "OK",
     PATTERN_NO: "CANCEL",
   },
+  NOTIFICATION_MESSAGE: {
+    TITLE: "今日使ったお金は記録した？",
+    BODY: "毎日コツコツ記録していこう",
+  },
 } as const;
 
 export const HISTORY_MESSAGE = {
@@ -57,3 +61,9 @@ export const HISTORYDETAIL_MESSAGE = {
     },
   },
 } as const;
+
+export const SETTINGS_MESSAGE = {
+  UPDATE_MESSAGE: "設定を更新しました",
+  REMINDER: "リマインダ",
+  BUTTON_UPDATE: "設定更新",
+};
