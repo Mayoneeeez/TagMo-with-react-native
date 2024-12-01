@@ -74,7 +74,7 @@ const Amount: React.FC = ({ navigation }: any) => {
           hasRightButton={false}
           leftFontAwesomeName={"chevron-left"}
           leftcolor={"black"}
-          onLeftPress={() => navigation.navigate("Home")}
+          onLeftPress={() => navigation.pop()}
         />
         <View style={styles.amountContainer}>
           <Text style={styles.currency}>¥</Text>

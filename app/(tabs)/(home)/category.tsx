@@ -62,7 +62,7 @@ const Category: React.FC = ({ navigation }: any) => {
           hasRightButton={false}
           leftFontAwesomeName={"chevron-left"}
           leftcolor={"black"}
-          onLeftPress={() => navigation.navigate("Home")}
+          onLeftPress={() => navigation.popToTop()}
         />
         <View style={styles.buttonGroupGroup}>
           <View style={styles.buttonGroup}>
@@ -70,21 +70,18 @@ const Category: React.FC = ({ navigation }: any) => {
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_1.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_1.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_2.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_2.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_3.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_3.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
           </View>
@@ -93,21 +90,18 @@ const Category: React.FC = ({ navigation }: any) => {
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_4.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_4.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_5.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_5.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_6.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_6.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
           </View>
@@ -116,21 +110,18 @@ const Category: React.FC = ({ navigation }: any) => {
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_7.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_7.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_8.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_8.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_9.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_9.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
           </View>
@@ -139,21 +130,18 @@ const Category: React.FC = ({ navigation }: any) => {
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_10.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_10.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_11.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_11.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_12.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_12.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
           </View>
@@ -162,21 +150,18 @@ const Category: React.FC = ({ navigation }: any) => {
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_13.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_13.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_14.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_14.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
             <SquareButtonInCategory
               color={squareButtonColor}
               iconName={HOME_VALUE.CATEGORY.BUTTON_15.ICON_NAME}
               text={HOME_VALUE.CATEGORY.BUTTON_15.TEXT}
-              nextScreen={NEXT_SCREEN}
               registeredProps={registeredProps}
             />
           </View>

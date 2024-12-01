@@ -18,13 +18,15 @@
         "NSLocationWhenInUseUsageDescription": "このアプリは位置情報を利用します。",
         "NSLocationAlwaysUsageDescription": "このアプリは位置情報を利用します。",
         "NSLocationUsageDescription": "このアプリは位置情報を利用します。"
-      }
+      },
+      "newArchEnabled": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "newArchEnabled": true
     },
     "web": {
       "bundler": "metro",

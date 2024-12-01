@@ -45,6 +45,7 @@
   - expo-router(画面遷移)
   - expo-sqlite(DB)
   - expo-location(位置情報取得)
+  - expo-notifications(プッシュ通知)
 - Overpass API(OpenStreetMap のデータを扱う API)
 - axios(overpass api のための HTTP メソッド)
 

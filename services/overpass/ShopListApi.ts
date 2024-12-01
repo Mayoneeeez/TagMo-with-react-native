@@ -81,9 +81,14 @@ const getShopList = async (
         latitude: element.lat,
         longitude: element.lon,
       };
+      console.log(haversineDistance(currentLocation, shopLocation).toFixed(0));
       const distance = parseFloat(
         haversineDistance(currentLocation, shopLocation).toFixed(0),
       );
+      if (isNaN(distance)) {
+        console.error(`Invalid value for amount: ${distance}`);
+        return; // 処理を中断
+      }
 
       return {
         shopName,

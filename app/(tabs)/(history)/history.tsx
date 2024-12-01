@@ -13,7 +13,7 @@ import { TagMoHeader } from "@/components/header/TagMoHeader";
 import { LoadListContext } from "@/app/_layout";
 import DBApi from "@/services/database/DBApi";
 import { DateSelecter } from "@/components/DateSelecter";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import utility from "@/utils/Utility";
 
@@ -69,7 +69,7 @@ const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
 
 const History: React.FC = () => {
   // const [searchText, setSearchText] = useState("");
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  // const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [listData, setListData] = useState<ListItemProps[]>([]);
   const [totalAmount, setTotalAmount] = useState("0");
   const [refreshing, setRefreshing] = useState(false); //Historyリストを更新するフラグ
@@ -81,6 +81,8 @@ const History: React.FC = () => {
     startDate: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
     endDate: new Date(),
   });
+
+  const router = useRouter();
 
   useEffect(() => {
     async function setup() {
@@ -138,8 +140,14 @@ const History: React.FC = () => {
             onPress={() => {
               console.log("categoryから値遅れているか確認");
               console.log(item);
-              navigation.navigate("HistoryDetail", {
-                item: item,
+              console.log(JSON.stringify(item));
+              // navigation.navigate("HistoryDetail", {
+              //   item: item,
+              // });
+              // router.push("/historyDetail");
+              router.push({
+                pathname: "/(tabs)/(history)/historyDetail",
+                params: { items: JSON.stringify(item) },
               });
             }}
           >

@@ -18,8 +18,6 @@ type SquareButtonProps = {
   color: string;
   iconName: keyof typeof MaterialIcons.glyphMap;
   text: string;
-  nextScreen: string;
-  // doRegisterAmountFlag?: boolean;
   registeredProps?: RegisteredProps;
 };
 
@@ -27,14 +25,13 @@ export const SquareButtonInCategory: React.FC<SquareButtonProps> = ({
   color,
   iconName,
   text,
-  nextScreen,
   registeredProps,
 }) => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const { loadList, setLoadList } = useContext(LoadListContext);
 
   const handlePress = async () => {
-    navigation.navigate(nextScreen);
+    navigation.popToTop();
     //undefinedがありえるため避けた
     if (registeredProps === undefined) {
       return;

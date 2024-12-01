@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import History from "./history";
 import HistoryDetail from "./historyDetail";
+import { Stack, useRouter } from "expo-router";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -16,22 +17,14 @@ SplashScreen.preventAutoHideAsync();
 export default function HomeAmountLayout() {
   const colorScheme = useColorScheme();
 
-  const Stack = createNativeStackNavigator();
+  // const Stack = createNativeStackNavigator();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator initialRouteName="History">
-        <Stack.Screen
-          name="History"
-          component={History}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HistoryDetail"
-          component={HistoryDetail}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      <Stack initialRouteName="history">
+        <Stack.Screen name="history" options={{ headerShown: false }} />
+        <Stack.Screen name="historyDetail" options={{ headerShown: false }} />
+      </Stack>
     </ThemeProvider>
   );
 }

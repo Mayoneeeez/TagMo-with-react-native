@@ -9,7 +9,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
   let result = await db.getFirstAsync<{ user_version: number }>(
     "PRAGMA user_version",
   );
-
+  console.log("DBindexの実行");
   let currentDbVersion = result ? result.user_version : 0; //resultが定義されていれば前代入、そうでなければ0代入
 
   // 開発用にDBはリセットされるようにする
@@ -39,7 +39,9 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
   // if (currentDbVersion === 1) {
   //   Add more migrations
   // }
+  console.log("DBindexの実行");
   await db.execAsync(`PRAGMA user_version = ${DATABASE_VERSION}`);
+  console.log("DBindexの実行");
 }
 
 // 日付を1日ずつずらして10000個のデータを挿入する関数

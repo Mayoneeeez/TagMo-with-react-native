@@ -1,6 +1,7 @@
 import {
   DarkTheme,
   DefaultTheme,
+  NavigationContainer,
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -8,9 +9,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { createContext, useEffect, useState } from "react";
 import "react-native-reanimated";
-
 import { useColorScheme } from "@/hooks/useColorScheme";
-import App from ".";
 import { SQLiteProvider } from "expo-sqlite";
 import { migrateDbIfNeeded } from "@/services/database";
 
@@ -43,16 +42,20 @@ export default function RootLayout() {
   }
 
   return (
-    <LoadListContext.Provider value={{ loadList, setLoadList }}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <SQLiteProvider databaseName="tagmo.db" onInit={migrateDbIfNeeded}>
-          <Stack>
-            {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            {/* <Stack.Screen name="+not-found" /> */}
-          </Stack>
-        </SQLiteProvider>
-      </ThemeProvider>
-    </LoadListContext.Provider>
+    <NavigationContainer>
+      <LoadListContext.Provider value={{ loadList, setLoadList }}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <SQLiteProvider databaseName="tagmo.db" onInit={migrateDbIfNeeded}>
+            <Stack>
+              {/* <Stack.Screen name="index" options={{ headerShown: false }} /> */}
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              {/* <Stack.Screen name="+not-found" /> */}
+            </Stack>
+          </SQLiteProvider>
+        </ThemeProvider>
+      </LoadListContext.Provider>
+    </NavigationContainer>
   );
 }

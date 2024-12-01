@@ -10,6 +10,7 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 import Home from "./home";
 import Amount from "./amount";
 import Category from "./category";
+import { Stack } from "expo-router";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

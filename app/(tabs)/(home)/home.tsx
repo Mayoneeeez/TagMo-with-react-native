@@ -50,29 +50,8 @@ const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
 
 const Drawer = createDrawerNavigator();
 
-// const handlePress = () => {
-//   Alert.alert(
-//     "ログアウト",
-//     "ログアウトしますか？",
-//     [
-//       {
-//         text: "No",
-//         onPress: () => {},
-//         style: "cancel",
-//       },
-//       {
-//         text: "Yes",
-//         onPress: () => {
-//           router.replace("/auth/login");
-//         },
-//       },
-//     ],
-//     { cancelable: false },
-//   );
-// };
-
 const HomeMain: React.FC = () => {
-  // console.log("HomeMainが呼び出されてるか確認");
+  console.log("HomeMainが呼び出されてるか確認");
   const [searchText, setSearchText] = useState("");
   const [shopList, setShopList] = useState<ListItemProps[]>([]);
   const [isLoading, setIsloading] = useState(true);

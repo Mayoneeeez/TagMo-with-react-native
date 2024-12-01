@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
-import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { COMMON_MESSAGE } from "@/constants/message";
 
 export const usePushNotification = () => {
