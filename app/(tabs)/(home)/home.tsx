@@ -241,12 +241,12 @@ const Home: React.FC = () => {
       <Drawer.Screen
         name="HomeMain"
         component={HomeMain}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, drawerLabel: "Home" }}
       />
       <Drawer.Screen
         name="Settings"
         component={HomeSettings}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, drawerLabel: "Settings" }}
       />
     </Drawer.Navigator>
   );
