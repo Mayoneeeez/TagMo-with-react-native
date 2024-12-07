@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  KeyboardAvoidingView,
 } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import {
@@ -29,6 +30,7 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import utility from "@/utils/Utility";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 type RootParamList = {
   "/(tabs)/(history)/historyDetail": { item: RegisteredProps };
@@ -184,13 +186,15 @@ const HistoryDetail: React.FC = () => {
         />
         <View style={styles.inputRow}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_1}:</Text>
-          <DateTimePicker
-            style={styles.inputDate}
-            value={formData.transaction_date}
-            mode="date"
-            display="spinner"
-            onChange={onChangeDate}
-          />
+          <View style={styles.datePickerWrapper}>
+            <DateTimePicker
+              style={styles.inputDate}
+              value={formData.transaction_date}
+              mode="date"
+              display={Platform.OS === "ios" ? "compact" : "default"}
+              onChange={onChangeDate}
+            />
+          </View>
         </View>
         <View style={styles.inputRow}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_2}:</Text>
@@ -203,7 +207,7 @@ const HistoryDetail: React.FC = () => {
             onChangeText={(value) => handleFieldChange("amount", value)}
           />
         </View>
-        <View style={styles.inputRow}>
+        {/* <View style={styles.inputRow}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_3}:</Text>
           <RNPickerSelect
             items={[
@@ -279,7 +283,8 @@ const HistoryDetail: React.FC = () => {
             value={formData.category}
             onValueChange={(value) => handleFieldChange("category", value)}
           />
-        </View>
+        </View> */}
+
         <View style={styles.memoContainer}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_4}:</Text>
           <TextInput
@@ -291,6 +296,7 @@ const HistoryDetail: React.FC = () => {
             onChangeText={(value) => handleFieldChange("memo", value)}
           />
         </View>
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.button, styles.saveButton]}
@@ -320,6 +326,9 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
   },
+  datePickerWrapper: {
+    height: 70,
+  },
   dateButton: {
     color: "#888",
     fontSize: 16,
@@ -345,16 +354,15 @@ const styles = StyleSheet.create({
     borderColor: "#E0E0E0", // 淡い灰色の枠線
     borderWidth: 1,
     borderRadius: 8,
-    paddingVertical: 0,
+    paddingVertical: 10, // 上下の余白を少し小さくする
     paddingHorizontal: 12,
     fontSize: 16,
     backgroundColor: "#F9F9F9",
-
-    height: 100,
+    height: 40, // 高さを小さくしてコンパクトに
   },
   memoContainer: {
     flex: 1,
-    marginTop: 16,
+    marginTop: 0,
     backgroundColor: "#FFF",
     borderRadius: 8,
     padding: 12,
