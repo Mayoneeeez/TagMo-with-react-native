@@ -30,7 +30,6 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import utility from "@/utils/Utility";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 type RootParamList = {
   "/(tabs)/(history)/historyDetail": { item: RegisteredProps };

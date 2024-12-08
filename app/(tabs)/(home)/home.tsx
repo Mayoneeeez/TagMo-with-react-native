@@ -29,6 +29,8 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import { usePushNotification } from "@/hooks/usePushNotification";
 import { SETTINGS_MESSAGE } from "@/constants/message";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ASYNC_STORAGE_KEYS } from "@/constants/asyncStorageKeys";
 
 const NEXT_SCREEN: string = "Amount";
 
@@ -164,23 +166,55 @@ const HomeMain: React.FC = () => {
 
 const HomeSettings: React.FC = () => {
   const navigation = useNavigation();
-  const { onPressDone } = usePushNotification();
+  const { onAlarm, offAlarm } = usePushNotification();
   const [onToggle, setOnToggle] = useState<boolean>(false);
   const [remindTime, setRemindTime] = useState(new Date());
+  useEffect(() => {
+    const loadRemindTime = async () => {
+      try {
+        const storedRemindTime = await AsyncStorage.getItem(
+          ASYNC_STORAGE_KEYS.REMIND_TIME,
+        );
+        if (storedRemindTime) {
+          // 取得した値があればDateオブジェクトに変換
+          setRemindTime(new Date(storedRemindTime));
+        }
+
+        const storedAlarmFlag = await AsyncStorage.getItem(
+          ASYNC_STORAGE_KEYS.ALARM_FLAG,
+        );
+        if (storedAlarmFlag) {
+          setOnToggle(storedAlarmFlag === "true");
+        }
+      } catch (error) {
+        console.error("Error loading remindTime from AsyncStorage", error);
+      }
+    };
+
+    loadRemindTime();
+  }, []);
+
+  useEffect(() => {
+    if (onToggle) {
+      onAlarm(onToggle, remindTime);
+    } else {
+      offAlarm(onToggle);
+    }
+  }, [onToggle, remindTime]);
+
+  console.log("remindTime = " + remindTime);
+  console.log("onToggle = " + onToggle);
+  console.log();
+
   const onSettingsPress = () => {
     navigation.dispatch(DrawerActions.openDrawer());
     Keyboard.dismiss(); // キーボードを閉じる
   };
 
-  const onSetPicker = (event: DateTimePickerEvent, remindTime?: Date) => {
+  const onSetPicker = async (event: DateTimePickerEvent, remindTime?: Date) => {
     if (remindTime) {
       setRemindTime(remindTime);
     }
-  };
-
-  const onSettingsUpdate = async () => {
-    onPressDone(onToggle, remindTime);
-    Alert.alert(SETTINGS_MESSAGE.UPDATE_MESSAGE);
   };
 
   return (
@@ -195,36 +229,38 @@ const HomeSettings: React.FC = () => {
       <View style={styles.innerContainer}>
         <View style={styles.reminderRow}>
           <Text style={styles.reminderText}>{SETTINGS_MESSAGE.REMINDER}</Text>
-          <Switch
-            onChange={() => {
-              setOnToggle(!onToggle);
-            }}
-            value={onToggle}
-          />
+
           {onToggle ? (
             <DateTimePicker
               disabled={false}
-              style={styles.inputDate}
-              value={remindTime}
+              style={styles.inputDateOn}
+              value={remindTime ?? new Date().toDateString}
               mode="time"
-              display="spinner"
+              display="compact"
               onChange={onSetPicker}
             />
           ) : (
             <DateTimePicker
               disabled={true}
-              style={styles.inputDate}
+              style={styles.inputDateOff}
               value={remindTime}
               mode="time"
-              display="spinner"
+              display="compact"
               onChange={onSetPicker}
             />
           )}
+          <Switch
+            onChange={() => {
+              setOnToggle(!onToggle);
+              // if (onToggle) {
+              //   onAlarm(onToggle, remindTime);
+              // } else {
+              //   offAlarm(onToggle);
+              // }
+            }}
+            value={onToggle}
+          />
         </View>
-        <RectangleButton
-          title={SETTINGS_MESSAGE.BUTTON_UPDATE}
-          onPress={onSettingsUpdate}
-        />
       </View>
     </SafeAreaView>
   );
@@ -325,11 +361,22 @@ const styles = StyleSheet.create({
   },
   reminderText: {
     fontSize: 16,
-    marginRight: 10, // トグルスイッチとの間に余白を追加
+    marginRight: 40, // トグルスイッチとの間に余白を追加
     fontWeight: "bold",
   },
-  inputDate: {
-    flex: 1,
+  inputDateOn: {
+    // flex: 1,
+    // borderColor: "#E0E0E0", // 淡い灰色の枠線
+    // borderWidth: 1,
+    // borderRadius: 8,
+    // paddingVertical: 0,
+    // paddingHorizontal: 12,
+    // fontSize: 16,
+    // backgroundColor: "#F9F9F9",
+    height: 70,
+  },
+  inputDateOff: {
+    // flex: 1,
     // borderColor: "#E0E0E0", // 淡い灰色の枠線
     // borderWidth: 1,
     // borderRadius: 8,

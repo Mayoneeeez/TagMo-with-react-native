@@ -1,9 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import * as Notifications from "expo-notifications";
 import { COMMON_MESSAGE } from "@/constants/message";
+import { ASYNC_STORAGE_KEYS } from "@/constants/asyncStorageKeys";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const usePushNotification = () => {
   const [granted, setGranted] = useState(true);
+  // const [scheduledNotifications, setScheduledNotifications] = useState<any[]>(
+  //   [],
+  // );
+
+  // console.log(scheduledNotifications);
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -39,6 +46,44 @@ export const usePushNotification = () => {
     f();
   }, []);
 
+  // //
+  // useEffect(() => {
+  //   const getScheduledNotifications = async () => {
+  //     const notifications =
+  //       await Notifications.getAllScheduledNotificationsAsync();
+  //     setScheduledNotifications(notifications);
+
+  //     notifications.forEach((notification, index) => {
+  //       const { trigger } = notification;
+
+  //       // trigger.type を確認して処理を分岐
+  //       if (trigger?.type === "calendar") {
+  //         const calendarTrigger =
+  //           trigger as Notifications.CalendarNotificationTrigger;
+  //         const { dateComponents } = calendarTrigger;
+
+  //         const year = dateComponents.year ?? new Date().getFullYear();
+  //         const month = dateComponents.month ?? 1;
+  //         const day = dateComponents.day ?? 1;
+  //         const hour = dateComponents.hour ?? 0;
+  //         const minute = dateComponents.minute ?? 0;
+  //         const second = dateComponents.second ?? 0;
+
+  //         const date = new Date(year, month - 1, day, hour, minute, second);
+
+  //         console.log(`Notification ${index + 1}:`);
+  //         console.log(`Title: ${notification.content.title}`);
+  //         console.log(`Time: ${date.toLocaleString()}`);
+  //         console.log("---");
+  //       } else {
+  //         console.log(`Notification ${index + 1}: Unsupported trigger type`);
+  //       }
+  //     });
+  //   };
+
+  //   getScheduledNotifications();
+  // }, []);
+
   const scheduleNotificationAsync = useCallback(
     async (weekday: number, hour: number, minute: number) => {
       await Notifications.scheduleNotificationAsync({
@@ -58,28 +103,46 @@ export const usePushNotification = () => {
     [],
   );
 
-  // 保存ボタンが押された時
-  const onPressDone = useCallback(
-    async (onToggle: boolean, remindTime: Date) => {
-      // ①まず現在設定されているスケジュールを全て削除する
-      await Notifications.cancelAllScheduledNotificationsAsync();
+  // プッシュ通知をONにする
+  const onAlarm = async (alarmFlag: boolean, remindTime: Date) => {
+    // まず現在設定されているスケジュールを全て削除
+    await Notifications.cancelAllScheduledNotificationsAsync();
 
-      // トグルがオフの時時間は設定しない
-      if (onToggle) {
-        // 日~月に設定する場合
-        await Promise.all(
-          [1, 2, 3, 4, 5, 6, 7].map(async (item) => {
-            await scheduleNotificationAsync(
-              item,
-              remindTime.getHours(),
-              remindTime.getMinutes(),
-            );
-          }),
+    // 日~月に設定する場合
+    await Promise.all(
+      [1, 2, 3, 4, 5, 6, 7].map(async (item) => {
+        await scheduleNotificationAsync(
+          item,
+          remindTime.getHours(),
+          remindTime.getMinutes(),
         );
-      }
-    },
-    [scheduleNotificationAsync],
-  );
+      }),
+    );
 
-  return { granted, onPressDone };
+    // 通知時間保存
+    await AsyncStorage.setItem(
+      ASYNC_STORAGE_KEYS.REMIND_TIME,
+      remindTime.toISOString(),
+    );
+
+    // 通知設定状態保存
+    await AsyncStorage.setItem(
+      ASYNC_STORAGE_KEYS.ALARM_FLAG,
+      alarmFlag.toString(),
+    );
+  };
+
+  // プッシュ通知をOFFにする
+  const offAlarm = async (alarmFlag: boolean) => {
+    // 現在設定されているスケジュールを全て削除
+    await Notifications.cancelAllScheduledNotificationsAsync();
+
+    // 通知設定状態保存
+    await AsyncStorage.setItem(
+      ASYNC_STORAGE_KEYS.ALARM_FLAG,
+      alarmFlag.toString(),
+    );
+  };
+
+  return { granted, onAlarm, offAlarm };
 };
