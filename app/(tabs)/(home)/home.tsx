@@ -75,10 +75,6 @@ const HomeMain: React.FC = () => {
     fetchShops();
   }, [currentLocation, searchText]);
 
-  // const handleTouchOutside = () => {
-  //   Keyboard.dismiss(); // キーボードを閉じる
-  // };
-
   const onSettingsPress = () => {
     navigation.dispatch(DrawerActions.openDrawer());
     Keyboard.dismiss(); // キーボードを閉じる
@@ -252,11 +248,6 @@ const HomeSettings: React.FC = () => {
           <Switch
             onChange={() => {
               setOnToggle(!onToggle);
-              // if (onToggle) {
-              //   onAlarm(onToggle, remindTime);
-              // } else {
-              //   offAlarm(onToggle);
-              // }
             }}
             value={onToggle}
           />

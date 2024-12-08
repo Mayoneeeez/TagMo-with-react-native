@@ -6,11 +6,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const usePushNotification = () => {
   const [granted, setGranted] = useState(true);
-  // const [scheduledNotifications, setScheduledNotifications] = useState<any[]>(
-  //   [],
-  // );
-
-  // console.log(scheduledNotifications);
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -45,44 +40,6 @@ export const usePushNotification = () => {
 
     f();
   }, []);
-
-  // //
-  // useEffect(() => {
-  //   const getScheduledNotifications = async () => {
-  //     const notifications =
-  //       await Notifications.getAllScheduledNotificationsAsync();
-  //     setScheduledNotifications(notifications);
-
-  //     notifications.forEach((notification, index) => {
-  //       const { trigger } = notification;
-
-  //       // trigger.type を確認して処理を分岐
-  //       if (trigger?.type === "calendar") {
-  //         const calendarTrigger =
-  //           trigger as Notifications.CalendarNotificationTrigger;
-  //         const { dateComponents } = calendarTrigger;
-
-  //         const year = dateComponents.year ?? new Date().getFullYear();
-  //         const month = dateComponents.month ?? 1;
-  //         const day = dateComponents.day ?? 1;
-  //         const hour = dateComponents.hour ?? 0;
-  //         const minute = dateComponents.minute ?? 0;
-  //         const second = dateComponents.second ?? 0;
-
-  //         const date = new Date(year, month - 1, day, hour, minute, second);
-
-  //         console.log(`Notification ${index + 1}:`);
-  //         console.log(`Title: ${notification.content.title}`);
-  //         console.log(`Time: ${date.toLocaleString()}`);
-  //         console.log("---");
-  //       } else {
-  //         console.log(`Notification ${index + 1}: Unsupported trigger type`);
-  //       }
-  //     });
-  //   };
-
-  //   getScheduledNotifications();
-  // }, []);
 
   const scheduleNotificationAsync = useCallback(
     async (weekday: number, hour: number, minute: number) => {

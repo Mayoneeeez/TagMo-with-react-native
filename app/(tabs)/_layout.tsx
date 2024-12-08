@@ -41,7 +41,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="(top-tabs)"
+        name="(balance-tabs)"
         options={{
           title: "Balance",
           tabBarIcon: ({ color, focused }) => (
