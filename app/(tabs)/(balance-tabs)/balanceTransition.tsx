@@ -263,28 +263,33 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   inputIOS: {
-    fontSize: 18, // Slightly larger font for readability
+    fontSize: 20,
     paddingVertical: 12,
-    paddingHorizontal: 12, // Padding for touchable area
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
     color: "black",
-    backgroundColor: "#eff3ff", // Light background color for visibility
-    borderRadius: 8, // Rounded corners for a soft look
-    textAlign: "center", // Center text horizontally
-    alignSelf: "center", // Center the input itself
-    width: "80%", // Adjust width to keep the input centered
-    marginVertical: 8, // Add spacing between input elements
+    backgroundColor: "#f9f9f9",
+    textAlign: "center",
+    alignSelf: "center",
+    width: "90%",
+    marginVertical: 10,
+    pointerEvents: "box-none",
   },
   inputAndroid: {
-    fontSize: 18, // Slightly larger font for readability
-    paddingVertical: 12,
-    paddingHorizontal: 12, // Padding for touchable area
+    fontSize: 16,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
     color: "black",
-    backgroundColor: "#eff3ff", // Light background color for visibility
-    borderRadius: 8, // Rounded corners for a soft look
-    textAlign: "center", // Center text horizontally
-    alignSelf: "center", // Center the input itself
-    width: "80%", // Adjust width to keep the input centered
-    marginVertical: 8, // Add spacing between input elements
+    backgroundColor: "#f9f9f9",
+    textAlign: "center",
+    alignSelf: "center",
+    width: "90%",
+    marginVertical: 10,
   },
   // Amountのスタイル
   buttonGroup: {

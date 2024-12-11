@@ -19,7 +19,7 @@ import {
   SafeAreaView,
 } from "react-native-safe-area-context";
 import { CommonHeader } from "@/components/header/CommonHeader";
-import RNPickerSelect from "react-native-picker-select";
+// import RNPickerSelect from "react-native-picker-select";
 import { HOME_VALUE } from "@/constants/appConstants";
 import { COMMON_MESSAGE, HISTORYDETAIL_MESSAGE } from "@/constants/message";
 import DBApi from "@/services/database/DBApi";
@@ -30,6 +30,7 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 import utility from "@/utils/Utility";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import RNPickerSelect from "react-native-picker-select";
 
 type RootParamList = {
   "/(tabs)/(history)/historyDetail": { item: RegisteredProps };
@@ -206,7 +207,7 @@ const HistoryDetail: React.FC = () => {
             onChangeText={(value) => handleFieldChange("amount", value)}
           />
         </View>
-        {/* <View style={styles.inputRow}>
+        <View style={styles.inputRow}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_3}:</Text>
           <RNPickerSelect
             items={[
@@ -282,7 +283,7 @@ const HistoryDetail: React.FC = () => {
             value={formData.category}
             onValueChange={(value) => handleFieldChange("category", value)}
           />
-        </View> */}
+        </View>
 
         <View style={styles.memoContainer}>
           <Text style={styles.label}>{HISTORYDETAIL_MESSAGE.label_4}:</Text>
@@ -347,6 +348,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 16,
     backgroundColor: "#F9F9F9",
+    pointerEvents: "box-none",
   },
   inputDate: {
     flex: 1,

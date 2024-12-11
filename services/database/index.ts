@@ -32,7 +32,7 @@ export async function migrateDbIfNeeded(db: SQLiteDatabase) {
         );
     `);
 
-    await insertSampleData(db); // データ挿入関数を呼び出す
+    // await insertSampleData(db); // データ挿入関数を呼び出す
 
     currentDbVersion = 1;
   }
