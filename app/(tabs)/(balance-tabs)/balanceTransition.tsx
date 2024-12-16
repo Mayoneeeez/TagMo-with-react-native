@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -13,6 +13,7 @@ import { LineChart, BarChart } from "react-native-chart-kit";
 import RNPickerSelect from "react-native-picker-select";
 import DBApi from "@/services/database/DBApi";
 import utility from "@/utils/Utility";
+import { LoadListContext } from "@/app/_layout";
 
 type ListItemProps = {
   month: string;
@@ -62,11 +63,12 @@ const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
   </View>
 );
 
-const blanceTransition: React.FC = () => {
+const BlanceTransition: React.FC = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [selectedYear, setSelectedYear] = useState(
     new Date().getFullYear().toString(),
   );
+  const { loadList } = useContext(LoadListContext);
 
   const years = Array.from(new Array(100), (val, index) =>
     (new Date().getFullYear() - index).toString(),
@@ -128,7 +130,7 @@ const blanceTransition: React.FC = () => {
     console.log("selectedYear = ", selectedYear);
     console.log();
     fetch();
-  }, [selectedYear]);
+  }, [selectedYear, loadList]);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {}, [listData]); //データ取得後画面を再レンダリングする
@@ -321,4 +323,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default blanceTransition;
+export default BlanceTransition;
