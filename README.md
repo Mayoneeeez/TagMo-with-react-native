@@ -8,6 +8,9 @@
 
 ### 画面デザイン
 
+#### Icon
+<img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/TagmoIcon.jpeg" width="40%">
+
 #### Home
 <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpeg" width="40%">
 
@@ -71,7 +74,7 @@
 - Overpass API(OpenStreetMap のデータを扱う API)
 - axios(overpass api のための HTTP メソッド)
 
-使用予定あり
+使ってみたい
 
 - Github Actions
 - Jest(テスト用)
