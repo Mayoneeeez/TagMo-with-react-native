@@ -9,7 +9,7 @@
 ### 画面デザイン
 
 - **Home**
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpg" width="40%">
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpeg" width="40%">
 
 - **Settings**
   <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Settings.jpg" width="40%">
