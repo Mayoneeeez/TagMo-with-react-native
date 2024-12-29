@@ -6,22 +6,30 @@
 - 位置情報による、小売店・飲食店などのタグ付けを用いて、支出の記録を容易にする
 - シンプルで洗練された UI、あくまで使いやすく
 
-## 画面デザイン
+### 画面デザイン
 
-- Home
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Home.jpg" width="40%">
+- **Home**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpg" width="40%">
 
-- Settings
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Settings.jpg" width="40%">
+- **Settings**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Settings.jpg" width="40%">
 
-- Amount
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Amount.jpg" width="40%">
+- **Amount**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Amount.jpg" width="40%">
 
-- History
-  <img src="https://github.com/KugoKento/store-picture/blob/main/History.jpg" width="40%">
+- **History**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/History.jpg" width="40%">
 
-- Balance
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Balance.jpg" width="40%">
+- **Balance**
+  - **Category**
+    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceCategory.jpg" width="40%">
+
+  - **Method**
+    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceMethod.jpg" width="40%">
+
+  - **Transition**
+    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceTransition.jpg" width="40%">
+
 
 ## 画面遷移
 
