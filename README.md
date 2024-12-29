@@ -8,26 +8,26 @@
 
 ### 画面デザイン
 
-- **Home**
+- Home
   <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpeg" width="40%">
 
-- **Settings**
+- Settings
   <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Settings.jpg" width="40%">
 
-- **Amount**
+- Amount
   <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Amount.jpg" width="40%">
 
-- **History**
+- History
   <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/History.jpg" width="40%">
 
-- **Balance**
-  - **Category**
+- Balance
+  - Category
     <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceCategory.jpg" width="40%">
 
-  - **Method**
+  - Method
     <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceMethod.jpg" width="40%">
 
-  - **Transition**
+  - Transition
     <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceTransition.jpg" width="40%">
 
 
