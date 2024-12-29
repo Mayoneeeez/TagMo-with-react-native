@@ -21,7 +21,6 @@ const Index = () => {
   if (!loaded) {
     return null;
   }
-  console.log("indexの確認");
   return <Redirect href="/(tabs)/(home)/home" />;
   // return <Redirect href="auth/login" />;
 };

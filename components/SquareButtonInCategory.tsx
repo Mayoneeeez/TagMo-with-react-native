@@ -37,20 +37,10 @@ export const SquareButtonInCategory: React.FC<SquareButtonProps> = ({
       return;
     }
     registeredProps.category = text;
-    console.log("DBに登録する項目");
-    console.log(registeredProps);
-    console.log("registeredProps : " + registeredProps);
     await DBApi.registerAmountList(registeredProps);
-    console.log("データベース登録が実行されているか確認");
-    console.log();
-    console.log(await DBApi.getAmountList(null, null));
-    console.log();
-    console.log("SquareButtonのloadList確認");
-    console.log(loadList);
     //history, balanceのリストを更新するため一時的に値を変更
     setLoadList(!loadList);
-    console.log(loadList);
-    console.log();
+    
     Alert.alert("入力完了", "入力が完了しました。");
   };
   return (

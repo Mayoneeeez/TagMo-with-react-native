@@ -6,7 +6,6 @@ import {
   TextInput,
   FlatList,
   StyleSheet,
-  Alert,
   Keyboard,
   ActivityIndicator,
   Platform,
@@ -18,8 +17,6 @@ import { DrawerActions } from "@react-navigation/native";
 import { SquareButtonInHome } from "@/components/SquareButtonInHome";
 import { TagMoHeader } from "@/components/header/TagMoHeader";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { RectangleButton } from "@/components/RectangleButton";
-import { router } from "expo-router";
 import useCurrentLocation from "@/hooks/useCurrentLocation";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
@@ -53,7 +50,6 @@ const ListItem: React.FC<ListItemProps> = ({ ...ListItemProps }) => (
 const Drawer = createDrawerNavigator();
 
 const HomeMain: React.FC = () => {
-  console.log("HomeMainが呼び出されてるか確認");
   const [searchText, setSearchText] = useState("");
   const [shopList, setShopList] = useState<ListItemProps[]>([]);
   const [isLoading, setIsloading] = useState(true);
@@ -117,7 +113,6 @@ const HomeMain: React.FC = () => {
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => {
-                  console.log(item.shopName);
                   navigation.navigate(NEXT_SCREEN, {
                     item: item,
                   });
@@ -197,10 +192,6 @@ const HomeSettings: React.FC = () => {
       offAlarm(onToggle);
     }
   }, [onToggle, remindTime]);
-
-  console.log("remindTime = " + remindTime);
-  console.log("onToggle = " + onToggle);
-  console.log();
 
   const onSettingsPress = () => {
     navigation.dispatch(DrawerActions.openDrawer());

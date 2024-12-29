@@ -13,8 +13,7 @@ import { TagMoHeader } from "@/components/header/TagMoHeader";
 import { LoadListContext } from "@/app/_layout";
 import DBApi from "@/services/database/DBApi";
 import { DateSelecter } from "@/components/DateSelecter";
-import { useNavigation, useRouter } from "expo-router";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+import { useRouter } from "expo-router";
 import utility from "@/utils/Utility";
 
 type ListItemProps = {
@@ -138,13 +137,6 @@ const History: React.FC = () => {
         renderItem={({ item }: { item: ListItemProps }) => (
           <TouchableOpacity
             onPress={() => {
-              console.log("categoryから値遅れているか確認");
-              console.log(item);
-              console.log(JSON.stringify(item));
-              // navigation.navigate("HistoryDetail", {
-              //   item: item,
-              // });
-              // router.push("/historyDetail");
               router.push({
                 pathname: "/(tabs)/(history)/historyDetail",
                 params: { items: JSON.stringify(item) },

@@ -34,7 +34,6 @@ export const SquareButtonInHome: React.FC<SquareButtonProps> = ({
       shopLocationName: "",
       distance: 0,
     };
-    console.log(listItemProps);
     navigation.navigate(nextScreen, { item: listItemProps });
   };
   return (

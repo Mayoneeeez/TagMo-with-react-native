@@ -9,10 +9,9 @@ import {
   StatusBar,
 } from "react-native";
 import { Dimensions } from "react-native";
-import { LineChart, BarChart } from "react-native-chart-kit";
+import { LineChart } from "react-native-chart-kit";
 import RNPickerSelect from "react-native-picker-select";
 import DBApi from "@/services/database/DBApi";
-import utility from "@/utils/Utility";
 import { LoadListContext } from "@/app/_layout";
 
 type ListItemProps = {
@@ -94,11 +93,6 @@ const BlanceTransition: React.FC = () => {
       const result: ListItemProps[] =
         await DBApi.getTotalAmountByYear(selectedYear);
 
-      // console.log();
-      // console.log();
-      // console.log(result);
-      // console.log();
-      // console.log();
       for (let i = 1; i <= 12; i++) {
         const foundItem = result.find((item) => Number(item.month) === i); // i月のアイテムを探す
         if (foundItem) {
@@ -108,41 +102,18 @@ const BlanceTransition: React.FC = () => {
         } else {
           chartData.datasets[0].data[i - 1] = 0;
         }
-
-        console.log(chartData.datasets[0].data[i - 1]); // 代入後のデータを表示
-        console.log(foundItem ? foundItem.total_amount_by_month : "Not found"); // 見つかった場合の値を表示
       }
-      console.log();
-      console.log();
-      console.log("chartData = ", chartData);
-      console.log(
-        "data = ",
-        chartData.datasets[0].data,
-        " ",
-        typeof chartData.datasets[0].data[0],
-      );
-      console.log();
-      console.log("selectedYear = ", selectedYear);
-      console.log();
+
       setListData(result);
     }
-    console.log();
-    console.log("selectedYear = ", selectedYear);
-    console.log();
+
     fetch();
   }, [selectedYear, loadList]);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {}, [listData]); //データ取得後画面を再レンダリングする
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <DateTimePicker
-        value={thisYear}
-        mode="date"
-        display="spinner"
-        onChange={() => {}}
-      /> */}
       <RNPickerSelect
         style={{
           inputIOS: styles.inputIOS,
@@ -172,19 +143,6 @@ const BlanceTransition: React.FC = () => {
             decimalPlaces: 0,
           }}
         />
-        {/* <BarChart
-          data={chartData}
-          width={screenWidth}
-          height={220}
-          yAxisLabel="$"
-          yAxisSuffix="¥"
-          chartConfig={{
-            backgroundColor: "#1cc910",
-            backgroundGradientFrom: "#eff3ff",
-            backgroundGradientTo: "#eff3ff",
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          }}
-        /> */}
       </View>
       <FlatList
         data={chartData.labels}

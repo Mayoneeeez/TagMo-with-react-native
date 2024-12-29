@@ -19,7 +19,6 @@ type SquareButtonProps = {
   iconName: keyof typeof MaterialIcons.glyphMap;
   text: string;
   nextScreen: string;
-  // doRegisterAmountFlag?: boolean;
   registeredProps: RegisteredProps;
 };
 
@@ -34,32 +33,8 @@ export const SquareButtonInAmount: React.FC<SquareButtonProps> = ({
   // const { loadList, setLoadList } = useContext(LoadListContext);
 
   const handlePress = async () => {
-    // navigation.navigate(nextScreen);
     registeredProps.payment_method = text;
     navigation.navigate(nextScreen, { registerItems: registeredProps });
-
-    console.log();
-    console.log("registerdProps確認 ");
-    console.log(registeredProps);
-    console.log();
-    //undefinedがありえるため避けた
-    // if (registeredProps === undefined) {
-    //   return;
-    // }
-    // registeredProps.payment_method = text;
-    // console.log("DBに登録する項目");
-    // console.log(registeredProps);
-    // console.log("registeredProps : " + registeredProps);
-    // await DBApi.registerAmountList(registeredProps);
-    // console.log("データベース登録が実行されているか確認");
-    // console.log();
-    // console.log("SquareButtonのloadList確認");
-    // console.log(loadList);
-    // //history, balanceのリストを更新するため一時的に値を変更
-    // setLoadList(!loadList);
-    // console.log(loadList);
-    // console.log();
-    // Alert.alert("入力完了", "入力が完了しました。");
   };
   return (
     <TouchableOpacity

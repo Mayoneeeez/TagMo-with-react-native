@@ -67,3 +67,17 @@ export const SETTINGS_MESSAGE = {
   REMINDER: "リマインダ",
   BUTTON_UPDATE: "設定更新",
 };
+
+export const AMOUNT_MESSAGE = {
+  TITLE: "金額/支払い方法",
+};
+
+export const CATEGORY_MESSAGE = {
+  TITLE: "カテゴリ",
+};
+
+export const BALANCE_TABS_LAYOUT = {
+  BALANCE_CAETGORY_TITLE: "分類",
+  BALANCE_METHOD_TITLE: "支払い方法",
+  BALANCE_TRANSITION_TITLE: "支出推移",
+};

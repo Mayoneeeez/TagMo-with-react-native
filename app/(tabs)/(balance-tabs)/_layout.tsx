@@ -9,6 +9,7 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import BalanceCategory from "./balanceCategory";
 import BalanceMethod from "./balanceMethod";
 import BalanceTransition from "./balanceTransition";
+import { BALANCE_TABS_LAYOUT } from "@/constants/message";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -37,7 +38,7 @@ export default function BalanceLayout() {
           name="balanceCategory"
           options={{
             headerShown: false,
-            title: "分類",
+            title: BALANCE_TABS_LAYOUT.BALANCE_CAETGORY_TITLE,
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
                 name={focused ? "list" : "list-outline"}
@@ -50,7 +51,7 @@ export default function BalanceLayout() {
           name="balanceMethod"
           options={{
             headerShown: false,
-            title: "支払い方法",
+            title: BALANCE_TABS_LAYOUT.BALANCE_METHOD_TITLE,
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
                 name={focused ? "card" : "card-outline"}
@@ -63,7 +64,7 @@ export default function BalanceLayout() {
           name="balanceTransition"
           options={{
             headerShown: false,
-            title: "支出推移",
+            title: BALANCE_TABS_LAYOUT.BALANCE_TRANSITION_TITLE,
             tabBarIcon: ({ color, focused }) => (
               <TabBarIcon
                 name={focused ? "analytics" : "analytics-outline"}

@@ -28,8 +28,6 @@ export const usePushNotification = () => {
         const { status } = await Notifications.requestPermissionsAsync();
         finalStatus = status;
       }
-      console.log("finalStatus = ");
-      console.log(finalStatus);
 
       if (finalStatus !== "granted") {
         // 拒否された時のフラグを取得しておく

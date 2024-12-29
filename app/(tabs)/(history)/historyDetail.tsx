@@ -11,19 +11,12 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
-  KeyboardAvoidingView,
 } from "react-native";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import {
-  initialWindowMetrics,
-  SafeAreaView,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { CommonHeader } from "@/components/header/CommonHeader";
-// import RNPickerSelect from "react-native-picker-select";
 import { HOME_VALUE } from "@/constants/appConstants";
 import { COMMON_MESSAGE, HISTORYDETAIL_MESSAGE } from "@/constants/message";
 import DBApi from "@/services/database/DBApi";
-import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import { LoadListContext } from "@/app/_layout";
 import DateTimePicker, {
   DateTimePickerEvent,
@@ -31,10 +24,6 @@ import DateTimePicker, {
 import utility from "@/utils/Utility";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import RNPickerSelect from "react-native-picker-select";
-
-type RootParamList = {
-  "/(tabs)/(history)/historyDetail": { item: RegisteredProps };
-};
 
 type RegisteredProps = {
   id: string;
@@ -47,30 +36,12 @@ type RegisteredProps = {
 };
 
 const HistoryDetail: React.FC = () => {
-  console.log("HistoryDetailまできてます");
-  // const route = useRoute<RouteProp<RootParamList, "HistoryDetail">>();
-  // const route =
-  //   useRoute<RouteProp<RootParamList, "/(tabs)/(history)/historyDetail">>();
-  // const route = useRoute();
-  console.log("routeの宣言");
-
   const { items } = useLocalSearchParams();
   const item: RegisteredProps = items ? JSON.parse(items as string) : null;
-  console.log("item " + item);
-  // const item = route.params;
   const router = useRouter();
-  // console.log("route" + route);
-  console.log("router" + router);
-  // const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
   const { loadList, setLoadList } = useContext(LoadListContext);
   const [formData, setFormData] = useState<RegisteredProps>({
-    // id: route.params.item.id,
-    // transaction_date: new Date(route.params.item.transaction_date), // デフォルトで現在の日付をセット
-    // payment_location: route.params.item.payment_location,
-    // category: route.params.item.category,
-    // payment_method: route.params.item.payment_method,
-    // amount: route.params.item.amount,
-    // memo: route.params.item.memo,
     id: item.id,
     transaction_date: new Date(item.transaction_date), // デフォルトで現在の日付をセット
     payment_location: item.payment_location,
@@ -79,32 +50,6 @@ const HistoryDetail: React.FC = () => {
     amount: item.amount,
     memo: item.memo,
   });
-
-  // console.log("=== Transaction Form Data ===");
-  // console.log(
-  //   "Transaction Date:",
-  //   formData.transaction_date,
-  //   "Is empty:",
-  //   !formData.transaction_date,
-  // );
-  // console.log(
-  //   "Payment Location:",
-  //   formData.payment_location,
-  //   "Is empty:",
-  //   !formData.payment_location,
-  // );
-  // console.log("Category:", formData.category, "Is empty:", !formData.category);
-  // console.log(
-  //   "Payment Method:",
-  //   formData.payment_method,
-  //   "Is empty:",
-  //   !formData.payment_method,
-  // );
-  // console.log("Amount:", formData.amount, "Is empty:", !formData.amount);
-  // console.log("Memo:", formData.memo, "Is empty:", !formData.memo);
-  // console.log("=============================");
-
-  // console.log(route);
 
   const handleFieldChange = (field: keyof RegisteredProps, value: any) => {
     setFormData((prevData) => ({

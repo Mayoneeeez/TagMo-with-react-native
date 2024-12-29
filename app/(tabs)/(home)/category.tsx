@@ -12,8 +12,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { HOME_VALUE } from "@/constants/appConstants";
 import { SquareButtonInCategory } from "@/components/SquareButtonInCategory";
 import { CommonHeader } from "@/components/header/CommonHeader";
-
-const NEXT_SCREEN = "Home";
+import { CATEGORY_MESSAGE } from "@/constants/message";
 
 type RootParamList = {
   Home: undefined;
@@ -30,13 +29,8 @@ type RegisteredProps = {
 };
 
 const Category: React.FC = ({ navigation }: any) => {
-  // const [amount, setAmount] = useState(""); //入力金額
   const route = useRoute<RouteProp<RootParamList, "Category">>(); //Amount画面から変数を受ける
 
-  console.log();
-  console.log("route確認");
-  console.log(route);
-  console.log();
   const [registeredProps, setRegisteredProps] = useState<RegisteredProps>({
     transaction_date: new Date(new Date().toDateString()),
     payment_location: route.params.registerItems.payment_location ?? "",
@@ -44,12 +38,6 @@ const Category: React.FC = ({ navigation }: any) => {
     payment_method: route.params.registerItems.payment_method ?? "",
     amount: route.params.registerItems.amount ?? "0",
   });
-  // route.params.registerItems.transaction_date = new Date();
-  // setRegisteredProps(route.params.registerItems);
-  console.log();
-  console.log("registeredProps確認");
-  console.log(registeredProps);
-  console.log();
 
   const squareButtonColor: string = "#495B6D";
 
@@ -57,7 +45,7 @@ const Category: React.FC = ({ navigation }: any) => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
         <CommonHeader
-          title={"カテゴリ"}
+          title={CATEGORY_MESSAGE.TITLE}
           hasLeftButton={true}
           hasRightButton={false}
           leftFontAwesomeName={"chevron-left"}

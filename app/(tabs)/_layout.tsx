@@ -1,10 +1,8 @@
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { Tabs, useNavigation } from "expo-router";
-import React, { useEffect } from "react";
+import { Tabs } from "expo-router";
+import React from "react";
 import { StyleSheet } from "react-native";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 
 export default function TabLayout() {
   // const colorScheme = useColorScheme();

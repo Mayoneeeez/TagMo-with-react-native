@@ -14,6 +14,7 @@ import { SquareButtonInAmount } from "@/components/SquareButtonInAmount";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { HOME_VALUE } from "@/constants/appConstants";
 import { CommonHeader } from "@/components/header/CommonHeader";
+import { AMOUNT_MESSAGE } from "@/constants/message";
 
 const NEXT_SCREEN = "Category";
 
@@ -69,7 +70,7 @@ const Amount: React.FC = ({ navigation }: any) => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView style={styles.container}>
         <CommonHeader
-          title={"金額/支払い方法"}
+          title={AMOUNT_MESSAGE.TITLE}
           hasLeftButton={true}
           hasRightButton={false}
           leftFontAwesomeName={"chevron-left"}
