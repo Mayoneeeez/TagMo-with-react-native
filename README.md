@@ -8,27 +8,28 @@
 
 ### 画面デザイン
 
-- Home
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpeg" width="40%">
+#### Home
+<img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Home.jpeg" width="40%">
 
-- Settings
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Settings.jpg" width="40%">
+#### Settings
+<img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Settings.jpg" width="40%">
 
-- Amount
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Amount.jpg" width="40%">
+#### Amount
+<img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/Amount.jpg" width="40%">
 
-- History
-  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/History.jpg" width="40%">
+#### History
+<img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/History.jpg" width="40%">
 
-- Balance
-  - Category
-    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceCategory.jpg" width="40%">
+#### Balance
+- **Category**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceCategory.jpg" width="40%">
 
-  - Method
-    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceMethod.jpg" width="40%">
+- **Method**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceMethod.jpg" width="40%">
 
-  - Transition
-    <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceTransition.jpg" width="40%">
+- **Transition**
+  <img src="https://github.com/KugoKento/store-picture/blob/main/Tagmo/BalanceTransition.jpg" width="40%">
+
 
 
 ## 画面遷移
