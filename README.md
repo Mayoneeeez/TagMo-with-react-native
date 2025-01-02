@@ -60,6 +60,8 @@
 
 ## 主な技術構成
 
+[![My Skills](https://skillicons.dev/icons?i=react,ts,npm)](https://skillicons.dev)
+
 - React Native
   - React Navigation
   - react-loading → react native では利用できないため、react native の機能で実装
