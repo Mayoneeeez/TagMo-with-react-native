@@ -60,7 +60,7 @@
 
 ## 主な技術構成
 
-[![My Skills](https://skillicons.dev/icons?i=react,ts,npm)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,ts,npm,sqlite,github,vscode)](https://skillicons.dev)
 
 - React Native
   - React Navigation
