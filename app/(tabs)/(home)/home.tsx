@@ -11,6 +11,7 @@ import {
   Platform,
   StatusBar,
   Switch,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { DrawerActions } from "@react-navigation/native";
@@ -76,82 +77,86 @@ const HomeMain: React.FC = () => {
     Keyboard.dismiss(); // キーボードを閉じる
   };
 
+  const handleTouchOutside = () => {
+    Keyboard.dismiss(); // キーボードを閉じる
+  };
+
   return (
-    // <TouchableWithoutFeedback onPress={handleTouchOutside}>
-    <SafeAreaView style={styles.container}>
-      <TagMoHeader
-        hasLeftButton={false}
-        hasRightButton={true}
-        rightFontAwesomeName={"bars"}
-        rightcolor={"black"}
-        onRightPress={onSettingsPress}
-      />
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search"
-          placeholderTextColor="#888"
-          value={searchText}
-          onChangeText={setSearchText}
+    <TouchableWithoutFeedback onPress={handleTouchOutside}>
+      <SafeAreaView style={styles.container}>
+        <TagMoHeader
+          hasLeftButton={false}
+          hasRightButton={true}
+          rightFontAwesomeName={"bars"}
+          rightcolor={"black"}
+          onRightPress={onSettingsPress}
         />
-      </View>
-      <>
-        {isLoading ? (
-          <View style={styles.activityIndicator}>
-            <ActivityIndicator size="large" />
-          </View>
-        ) : (
-          <FlatList
-            data={shopList}
-            refreshing={refreshing}
-            onRefresh={async () => {
-              //更新で最新現在地の取得とショップ検索
-              setRefreshing(true);
-              setSearchText(searchText);
-              setRefreshing(false);
-            }}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate(NEXT_SCREEN, {
-                    item: item,
-                  });
-                }}
-              >
-                <ListItem
-                  shopName={item.shopName}
-                  shopLocationName={item.shopLocationName}
-                  distance={item.distance}
-                />
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            style={styles.list}
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search"
+            placeholderTextColor="#888"
+            value={searchText}
+            onChangeText={setSearchText}
           />
-        )}
-      </>
-      <View style={styles.footer}>
-        <SquareButtonInHome
-          color="red"
-          iconName="shopping-cart"
-          text="EC"
-          nextScreen={NEXT_SCREEN}
-        />
-        <SquareButtonInHome
-          color="orange"
-          iconName="commute"
-          text="交通"
-          nextScreen={NEXT_SCREEN}
-        />
-        <SquareButtonInHome
-          color="green"
-          iconName="help-outline"
-          text="その他"
-          nextScreen={NEXT_SCREEN}
-        />
-      </View>
-    </SafeAreaView>
-    // </TouchableWithoutFeedback>
+        </View>
+        <>
+          {isLoading ? (
+            <View style={styles.activityIndicator}>
+              <ActivityIndicator size="large" />
+            </View>
+          ) : (
+            <FlatList
+              data={shopList}
+              refreshing={refreshing}
+              onRefresh={async () => {
+                //更新で最新現在地の取得とショップ検索
+                setRefreshing(true);
+                setSearchText(searchText);
+                setRefreshing(false);
+              }}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(NEXT_SCREEN, {
+                      item: item,
+                    });
+                  }}
+                >
+                  <ListItem
+                    shopName={item.shopName}
+                    shopLocationName={item.shopLocationName}
+                    distance={item.distance}
+                  />
+                </TouchableOpacity>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+              style={styles.list}
+            />
+          )}
+        </>
+        <View style={styles.footer}>
+          <SquareButtonInHome
+            color="red"
+            iconName="shopping-cart"
+            text="EC"
+            nextScreen={NEXT_SCREEN}
+          />
+          <SquareButtonInHome
+            color="orange"
+            iconName="commute"
+            text="交通"
+            nextScreen={NEXT_SCREEN}
+          />
+          <SquareButtonInHome
+            color="green"
+            iconName="help-outline"
+            text="その他"
+            nextScreen={NEXT_SCREEN}
+          />
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 

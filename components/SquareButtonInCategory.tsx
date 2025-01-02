@@ -40,7 +40,7 @@ export const SquareButtonInCategory: React.FC<SquareButtonProps> = ({
     await DBApi.registerAmountList(registeredProps);
     //history, balanceのリストを更新するため一時的に値を変更
     setLoadList(!loadList);
-    
+
     Alert.alert("入力完了", "入力が完了しました。");
   };
   return (

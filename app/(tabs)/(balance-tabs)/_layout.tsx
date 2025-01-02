@@ -26,6 +26,7 @@ export default function BalanceLayout() {
         screenOptions={{
           tabBarStyle: {
             backgroundColor: "#f8f8f8", // タブバーの背景色
+            marginBottom: -16, // タブバーの下の余白を縮小
           },
           tabBarActiveTintColor: "#ff6347", // アクティブなタブのアイコンの色
           tabBarInactiveTintColor: "gray", // 非アクティブなタブのアイコンの色

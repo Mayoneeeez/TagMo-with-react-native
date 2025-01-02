@@ -13,6 +13,9 @@ export const COMMON_MESSAGE = {
 } as const;
 
 export const HISTORY_MESSAGE = {
+  TOTAL_AMOUNT_MESSAGE: {
+    AMOUNT: "合計金額",
+  },
   BUTTON_DELETE: {
     DISPLAY: "削除",
     CLICK_START: {

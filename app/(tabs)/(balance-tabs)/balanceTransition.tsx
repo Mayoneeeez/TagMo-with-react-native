@@ -115,6 +115,11 @@ const BlanceTransition: React.FC = () => {
   return (
     <SafeAreaView style={styles.container}>
       <RNPickerSelect
+        pickerProps={{
+          itemStyle: {
+            color: "black", // 選択肢のテキストの色
+          },
+        }}
         style={{
           inputIOS: styles.inputIOS,
           inputAndroid: styles.inputAndroid,

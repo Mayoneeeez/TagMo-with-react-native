@@ -20,7 +20,11 @@ export default function HomeAmountLayout() {
   // const Stack = createNativeStackNavigator();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider
+      // ダークモード非対応
+      // value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      value={DefaultTheme}
+    >
       <Stack initialRouteName="history">
         <Stack.Screen name="history" options={{ headerShown: false }} />
         <Stack.Screen name="historyDetail" options={{ headerShown: false }} />

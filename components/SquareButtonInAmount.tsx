@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
-import { Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { LoadListContext } from "@/app/_layout";
-import DBApi from "@/services/database/DBApi";
 
 type RegisteredProps = {
   transaction_date?: Date;

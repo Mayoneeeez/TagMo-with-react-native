@@ -21,7 +21,10 @@ export default function HomeAmountLayout() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider // ダークモード非対応
+      // value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+      value={DefaultTheme}
+    >
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"

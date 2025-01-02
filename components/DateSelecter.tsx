@@ -71,6 +71,7 @@ export const DateSelecter: React.FC<DateSelecterProps> = (
                   mode="date"
                   display="spinner"
                   onChange={onChangeStart}
+                  textColor="#000" // 常に黒に設定
                 />
                 <Button
                   title={HISTORY_MESSAGE.MORDAL_MESSAGE.CLOSE}
@@ -112,6 +113,7 @@ export const DateSelecter: React.FC<DateSelecterProps> = (
                   mode="date"
                   display="spinner"
                   onChange={onChangeEnd}
+                  textColor="#000" // 常に黒に設定
                 />
                 <Button
                   title={HISTORY_MESSAGE.MORDAL_MESSAGE.CLOSE}

@@ -15,6 +15,7 @@ import DBApi from "@/services/database/DBApi";
 import { DateSelecter } from "@/components/DateSelecter";
 import { useRouter } from "expo-router";
 import utility from "@/utils/Utility";
+import { HISTORY_MESSAGE } from "@/constants/message";
 
 type ListItemProps = {
   id: string;
@@ -122,7 +123,9 @@ const History: React.FC = () => {
         <DateSelecter onDatesChange={handleDatesChange} />
       </View>
       <View style={styles.totalAmountContainer}>
-        <Text style={styles.totalAmountLabel}>合計金額：</Text>
+        <Text style={styles.totalAmountLabel}>
+          {HISTORY_MESSAGE.TOTAL_AMOUNT_MESSAGE.AMOUNT}
+        </Text>
         <Text
           style={styles.totalAmountText}
           numberOfLines={1}

@@ -46,7 +46,8 @@ export default function RootLayout() {
       <LoadListContext.Provider value={{ loadList, setLoadList }}>
         <ThemeProvider
           // ダークモード非対応
-          value={colorScheme === "dark" ? DefaultTheme : DefaultTheme}
+          // value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+          value={DefaultTheme}
         >
           <SQLiteProvider databaseName="tagmo.db" onInit={migrateDbIfNeeded}>
             <Stack>
