@@ -29,6 +29,7 @@ import { usePushNotification } from "@/hooks/usePushNotification";
 import { SETTINGS_MESSAGE } from "@/constants/message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ASYNC_STORAGE_KEYS } from "@/constants/asyncStorageKeys";
+import { Link } from "expo-router";
 
 const NEXT_SCREEN: string = "Amount";
 
@@ -219,8 +220,8 @@ const HomeSettings: React.FC = () => {
         onRightPress={onSettingsPress}
       />
       <View style={styles.innerContainer}>
-        <View style={styles.reminderRow}>
-          <Text style={styles.reminderText}>{SETTINGS_MESSAGE.REMINDER}</Text>
+        <View style={styles.settingsRow}>
+          <Text style={styles.settingsText}>{SETTINGS_MESSAGE.REMINDER}</Text>
 
           {onToggle ? (
             <DateTimePicker
@@ -253,6 +254,40 @@ const HomeSettings: React.FC = () => {
   );
 };
 
+const HomeOthers: React.FC = () => {
+  const navigation = useNavigation();
+
+  const onSettingsPress = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+    Keyboard.dismiss(); // キーボードを閉じる
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <TagMoHeader
+        hasLeftButton={false}
+        hasRightButton={true}
+        rightFontAwesomeName={"bars"}
+        rightcolor={"black"}
+        onRightPress={onSettingsPress}
+      />
+      <View style={styles.innerContainer}>
+        <View style={styles.settingsColumn}>
+          <Text style={styles.settingsMapText}>
+            <Link style={styles.link} href="https://openstreetmap.jp/">
+              {SETTINGS_MESSAGE.MAP}
+            </Link>
+          </Text>
+          <Text style={styles.settingsMapExp}>
+            {SETTINGS_MESSAGE.MAP_EXPLANATION}
+          </Text>
+          <Text style={styles.settingsMapExp}>{SETTINGS_MESSAGE.CREDIT}</Text>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+};
+
 const Home: React.FC = () => {
   return (
     <Drawer.Navigator
@@ -270,6 +305,11 @@ const Home: React.FC = () => {
         name="Settings"
         component={HomeSettings}
         options={{ headerShown: false, drawerLabel: "Settings" }}
+      />
+      <Drawer.Screen
+        name="Others"
+        component={HomeOthers}
+        options={{ headerShown: false, drawerLabel: "Others" }}
       />
     </Drawer.Navigator>
   );
@@ -341,15 +381,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     marginTop: -100,
   },
-  reminderRow: {
+  settingsRow: {
     flexDirection: "row", // 横並びにする
     alignItems: "center", // 垂直方向に中央揃え
     marginBottom: 20, // ボタンとの余白をつける
   },
-  reminderText: {
+  settingsColumn: {
+    flexDirection: "column", // 横並びにする
+    // alignItems: "center", // 垂直方向に中央揃え
+    marginBottom: 20, // ボタンとの余白をつける
+  },
+  settingsText: {
     fontSize: 16,
     marginRight: 40, // トグルスイッチとの間に余白を追加
     fontWeight: "bold",
+  },
+  settingsMapText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  settingsMapExp: {
+    fontSize: 16,
+    textAlign: "left",
+  },
+
+  link: {
+    color: "#007aff",
+    textDecorationLine: "underline", // アンダーバーを表示
   },
   inputDateOn: {
     // flex: 1,

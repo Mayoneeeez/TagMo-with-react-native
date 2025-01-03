@@ -66,9 +66,11 @@ export const HISTORYDETAIL_MESSAGE = {
 } as const;
 
 export const SETTINGS_MESSAGE = {
-  UPDATE_MESSAGE: "設定を更新しました",
   REMINDER: "リマインダ",
-  BUTTON_UPDATE: "設定更新",
+  MAP: "OpenStreetMap",
+  MAP_EXPLANATION:
+    "本アプリでは、OpenStreetMapを利用しています。リンクから、不足している地図情報を埋めることができます。",
+  CREDIT: "© OpenStreetMap contributors, Licensed under CC BY-SA 2.0",
 };
 
 export const AMOUNT_MESSAGE = {

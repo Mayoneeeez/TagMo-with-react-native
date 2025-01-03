@@ -13,7 +13,7 @@ import { BALANCE_TABS_LAYOUT } from "@/constants/message";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
-const TopTabLayout = withLayoutContext(Navigator);
+// const TopTabLayout = withLayoutContext(Navigator);
 
 // // Prevent the splash screen from auto-hiding before asset loading is complete.
 // SplashScreen.preventAutoHideAsync();
